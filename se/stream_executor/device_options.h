@@ -5,9 +5,9 @@
 #ifndef TENSORFLOW_STREAM_EXECUTOR_DEVICE_OPTIONS_H_
 #define TENSORFLOW_STREAM_EXECUTOR_DEVICE_OPTIONS_H_
 
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/platform/port.h"
 
-#include "tensorflow/stream_executor/platform/logging.h"
+#include "se/stream_executor/platform/logging.h"
 
 namespace perftools {
 namespace gputools {
