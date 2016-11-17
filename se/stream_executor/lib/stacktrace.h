@@ -1,7 +1,7 @@
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_STACKTRACE_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STACKTRACE_H_
 
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/platform/port.h"
 
 namespace perftools {
 namespace gputools {

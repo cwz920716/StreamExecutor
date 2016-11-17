@@ -22,6 +22,9 @@ cc_library(
     visibility = [
         "//visibility:public"
     ],
+    deps = [
+        "//third_party/gpus/cuda:cuda_headers",
+    ],
     linkopts = [
         "-ldl",
     ],

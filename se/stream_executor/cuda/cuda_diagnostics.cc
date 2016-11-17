@@ -1,4 +1,4 @@
-#include "tensorflow/stream_executor/cuda/cuda_diagnostics.h"
+#include "se/stream_executor/cuda/cuda_diagnostics.h"
 
 #include <dirent.h>
 #include <limits.h>
