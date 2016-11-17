@@ -1,6 +1,23 @@
+/* Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+
 #include "se/stream_executor/cuda/cuda_platform.h"
 
 #include "se/stream_executor/cuda/cuda_driver.h"
+#include "se/stream_executor/cuda/cuda_gpu_executor.h"
+#include "se/stream_executor/cuda/cuda_platform_id.h"
 #include "se/stream_executor/lib/error.h"
 #include "se/stream_executor/lib/initialize.h"
 #include "se/stream_executor/lib/ptr_util.h"
@@ -10,8 +27,6 @@
 namespace perftools {
 namespace gputools {
 namespace cuda {
-
-PLATFORM_DEFINE_ID(kCudaPlatformId);
 
 CudaPlatform::CudaPlatform()
     : name_("CUDA"), min_numa_node_(0), limit_numa_node_(0) {}
@@ -132,8 +147,8 @@ port::StatusOr<StreamExecutor*> CudaPlatform::GetExecutor(
 
 port::StatusOr<std::unique_ptr<StreamExecutor>>
 CudaPlatform::GetUncachedExecutor(const StreamExecutorConfig& config) {
-  auto executor = port::MakeUnique<StreamExecutor>(PlatformKind::kCuda,
-                                                   config.plugin_config);
+  auto executor = port::MakeUnique<StreamExecutor>(
+      this, new CUDAExecutor(config.plugin_config));
   auto init_status = executor->Init(config.ordinal, config.device_options);
   if (!init_status.ok()) {
     return port::Status{

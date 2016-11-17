@@ -1,6 +1,22 @@
+/* Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+
 #ifndef TENSORFLOW_STREAM_EXECUTOR_CUDA_CUDA_DIAGNOSTICS_H_
 #define TENSORFLOW_STREAM_EXECUTOR_CUDA_CUDA_DIAGNOSTICS_H_
 
+#include "se/stream_executor/platform/port.h"
 #include <tuple>
 
 #include "se/stream_executor/lib/statusor.h"
@@ -10,8 +26,8 @@ namespace perftools {
 namespace gputools {
 namespace cuda {
 
-// e.g. DriverVersion{331, 79}
-using DriverVersion = std::tuple<int, int>;
+// e.g. DriverVersion{346, 3, 4}
+using DriverVersion = std::tuple<int, int, int>;
 
 // Converts a parsed driver version to string form.
 string DriverVersionToString(DriverVersion version);
@@ -56,8 +72,6 @@ class Diagnostician {
   static void LogDriverVersionInformation();
 
  private:
-  // Logs information about the loaded nvidia-related kernel modules.
-  static void LogKernelModuleInformation();
 
   // Given the DSO version number and the driver version file contents, extracts
   // the driver version and compares, warning the user in the case of

@@ -1,3 +1,18 @@
+/* Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+
 // Defines the CUDAStream type - the CUDA-specific implementation of the generic
 // StreamExecutor Stream interface.
 
@@ -5,7 +20,7 @@
 #define TENSORFLOW_STREAM_EXECUTOR_CUDA_CUDA_STREAM_H_
 
 #include "se/stream_executor/cuda/cuda_driver.h"
-#include "se/stream_executor/cuda/cuda_gpu_executor.h"
+#include "se/stream_executor/platform/thread_annotations.h"
 #include "se/stream_executor/stream_executor_internal.h"
 
 namespace perftools {
@@ -45,7 +60,7 @@ class CUDAStream : public internal::StreamInterface {
   // Retrieves an event which indicates that all work enqueued into the stream
   // has completed. Ownership of the event is not transferred to the caller, the
   // event is owned by this stream.
-  bool GetOrCreateCompletedEvent(CUevent *completed_event);
+  CUevent* completed_event() { return &completed_event_; }
 
   // Returns the CUstream value for passing to the CUDA API.
   //
@@ -59,13 +74,19 @@ class CUDAStream : public internal::StreamInterface {
   CUDAExecutor *parent() const { return parent_; }
 
  private:
-  mutex mu_;              // mutex that guards the completion event.
   CUDAExecutor *parent_;  // Executor that spawned this stream.
   CUstream cuda_stream_;  // Wrapped CUDA stream handle.
 
   // Event that indicates this stream has completed.
-  CUevent completed_event_ GUARDED_BY(mu_);
+  CUevent completed_event_ = nullptr;
 };
+
+// Helper functions to simplify extremely common flows.
+// Converts a Stream to the underlying CUDAStream implementation.
+CUDAStream *AsCUDAStream(Stream *stream);
+
+// Extracts a CUstream from a CUDAStream-backed Stream object.
+CUstream AsCUDAStreamValue(Stream *stream);
 
 }  // namespace cuda
 }  // namespace gputools
