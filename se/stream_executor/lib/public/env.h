@@ -4,10 +4,10 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
-#include "tensorflow/core/platform/port.h"
-#include "tensorflow/core/lib/core/stringpiece.h"
-#include "tensorflow/core/public/status.h"
-#include "tensorflow/core/platform/protobuf.h"
+#include "se/stream_executor/platform/port.h"
+#include "se/stream_executor/lib/core/stringpiece.h"
+#include "se/stream_executor/lib/public/status.h"
+// #include "se/stream_executor/platform/protobuf.h"
 
 namespace tensorflow {
 
@@ -265,8 +265,9 @@ Status WriteStringToFile(Env* env, const string& fname,
 
 /// Reads contents of named file and parse as binary encoded proto data
 /// and store into *proto.
+/*
 Status ReadBinaryProto(Env* env, const string& fname,
-                       ::tensorflow::protobuf::MessageLite* proto);
+                       ::tensorflow::protobuf::MessageLite* proto); */
 
 }  // namespace tensorflow
 
