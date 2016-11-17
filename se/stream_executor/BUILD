@@ -1,10 +1,12 @@
-_library(
+cc_library(
     name = "stream_executor",
     srcs = glob(
         [
             "*.cc",
             "lib/*.cc",
             "cuda/*.cc",
+            "platform/**/*.cc",
+            "lib/**/*.cc",
         ],
         exclude = [
             "**/*_test.cc",
@@ -13,8 +15,13 @@ _library(
     hdrs = glob([
         "*.h",
         "lib/*.h",
+        "cuda/*.h",
+        "lib/**/*.h",
         "platform/**/*.h",
     ]),
+    visibility = [
+        "//visibility:public"
+    ],
     linkopts = [
         "-ldl",
     ],
