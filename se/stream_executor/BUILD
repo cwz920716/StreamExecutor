@@ -1,12 +1,13 @@
+licenses(["restricted"])
+
 cc_library(
     name = "stream_executor",
     srcs = glob(
         [
             "*.cc",
             "lib/*.cc",
+            "platform/default/*.cc",
             "cuda/*.cc",
-            "platform/**/*.cc",
-            "lib/**/*.cc",
         ],
         exclude = [
             "**/*_test.cc",
@@ -14,18 +15,24 @@ cc_library(
     ),
     hdrs = glob([
         "*.h",
-        "lib/*.h",
         "cuda/*.h",
-        "lib/**/*.h",
+        "lib/*.h",
+        "lib/gtl/*.h",
         "platform/**/*.h",
     ]),
-    visibility = [
-        "//visibility:public"
-    ],
-    deps = [
-        "//third_party/gpus/cuda:cuda_headers",
+    data = [
+        "@local_config_cuda//cuda:cublas",
+        "@local_config_cuda//cuda:cudnn",
+        "@local_config_cuda//cuda:cufft",
+        "@local_config_cuda//cuda:curand",
     ],
     linkopts = [
         "-ldl",
     ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//third_party/eigen3",
+        "@local_config_cuda//cuda:cuda_headers",
+    ],
+    alwayslink = 1,
 )
