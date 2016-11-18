@@ -1,3 +1,5 @@
+licenses(["restricted"]) # MPL2, portions GPL v3, LGPL v3, BSD-like
+
 cc_library(
     name = "stream_executor",
     srcs = glob(
@@ -16,9 +18,10 @@ cc_library(
     ),
     hdrs = glob([
         "*.h",
+        "cuda/*.h",
         "lib/*.h",
         "lib/**/*.h",
-        "cuda/*.h",
+        "platform/*.h",
         "platform/**/*.h",
         "core/**/*.h",
         "core/**/**/*.h",
