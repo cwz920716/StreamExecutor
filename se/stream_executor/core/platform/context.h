@@ -39,7 +39,7 @@ class WithContext;
 #if defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/platform/google/context.h"
 #else
-#include "tensorflow/core/platform/default/context.h"
+#include "se/stream_executor/core/platform/default/context.h"
 #endif
 
 #endif  // TENSORFLOW_PLATFORM_CONTEXT_H_

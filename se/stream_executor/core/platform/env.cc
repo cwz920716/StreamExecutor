@@ -20,8 +20,8 @@ limitations under the License.
 #include "se/stream_executor/core/lib/gtl/map_util.h"
 #include "se/stream_executor/core/lib/gtl/stl_util.h"
 #include "se/stream_executor/core/lib/io/path.h"
-#include "se/stream_executor/platform/env.h"
-#include "se/stream_executor/platform/protobuf.h"
+#include "se/stream_executor/core/platform/env.h"
+#include "se/stream_executor/core/platform/protobuf.h"
 
 namespace tensorflow {
 
