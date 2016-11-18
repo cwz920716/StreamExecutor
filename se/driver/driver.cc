@@ -52,7 +52,7 @@ int main() {
   std::cout << TransposeString(Transpose::kTranspose) << std::endl;
   std::cout << "Hello World!" << std::endl;
 
-  Platform *platform =
+  auto platform =
       MultiPlatformManager::PlatformWithName("cuda").ValueOrDie();
 
   return 0;
