@@ -242,7 +242,7 @@ inline Tracing::TraceMe::TraceMe(StringPiece name) {
 #if defined(PLATFORM_GOOGLE)
 #include "tensorflow/core/platform/google/tracing_impl.h"
 #else
-#include "se/stream_executor/platform/default/tracing_impl.h"
+#include "se/stream_executor/core/platform/default/tracing_impl.h"
 #endif
 
 #endif  // TENSORFLOW_PLATFORM_TRACING_H_

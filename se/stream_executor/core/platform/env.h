@@ -24,11 +24,11 @@ limitations under the License.
 #include "se/stream_executor/core/lib/core/errors.h"
 #include "se/stream_executor/core/lib/core/status.h"
 #include "se/stream_executor/core/lib/core/stringpiece.h"
-#include "se/stream_executor/platform/file_system.h"
-#include "se/stream_executor/platform/macros.h"
-#include "se/stream_executor/platform/mutex.h"
-#include "se/stream_executor/platform/protobuf.h"
-#include "se/stream_executor/platform/types.h"
+#include "se/stream_executor/core/platform/file_system.h"
+#include "se/stream_executor/core/platform/macros.h"
+#include "se/stream_executor/core/platform/mutex.h"
+#include "se/stream_executor/core/platform/protobuf.h"
+#include "se/stream_executor/core/platform/types.h"
 
 namespace tensorflow {
 

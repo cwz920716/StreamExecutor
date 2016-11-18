@@ -28,7 +28,7 @@ limitations under the License.
 #include <initializer_list>
 #include <vector>
 
-#include "se/stream_executor/platform/load_library.h"
+#include "se/stream_executor/core/platform/load_library.h"
 #include "se/stream_executor/lib/error.h"
 #include "se/stream_executor/lib/str_util.h"
 #include "se/stream_executor/lib/str_util.h"
