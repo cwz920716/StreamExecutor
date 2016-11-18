@@ -13,20 +13,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
-#define TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+#ifndef TENSORFLOW_PLATFORM_DEFAULT_INTEGRAL_TYPES_H_
+#define TENSORFLOW_PLATFORM_DEFAULT_INTEGRAL_TYPES_H_
 
-#include "tensorflow/stream_executor/platform/port.h"
+// IWYU pragma: private, include "third_party/tensorflow/core/platform/types.h"
+// IWYU pragma: friend third_party/tensorflow/core/platform/types.h
 
-namespace perftools {
-namespace gputools {
-namespace port {
+namespace tensorflow {
 
-string Hostname();
-bool GetCurrentDirectory(string* dir);
+typedef signed char int8;
+typedef short int16;
+typedef int int32;
+typedef long long int64;
 
-}  // namespace port
-}  // namespace gputools
-}  // namespace perftools
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long uint64;
 
-#endif  // TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+}  // namespace tensorflow
+
+#endif  // TENSORFLOW_PLATFORM_DEFAULT_INTEGRAL_TYPES_H_

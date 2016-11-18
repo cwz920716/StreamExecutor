@@ -13,20 +13,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
-#define TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+#ifndef TENSORFLOW_PLATFORM_LOAD_LIBRARY_H_
+#define TENSORFLOW_PLATFORM_LOAD_LIBRARY_H_
 
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/lib/core/status.h"
 
-namespace perftools {
-namespace gputools {
-namespace port {
+namespace tensorflow {
 
-string Hostname();
-bool GetCurrentDirectory(string* dir);
+namespace internal {
 
-}  // namespace port
-}  // namespace gputools
-}  // namespace perftools
+Status LoadLibrary(const char* library_filename, void** handle);
+Status GetSymbolFromLibrary(void* handle, const char* symbol_name,
+                            void** symbol);
+// Return the filename of a dynamically linked library formatted according to
+// platform naming conventions
+string FormatLibraryFileName(const string& name, const string& version);
 
-#endif  // TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+}  // namespace internal
+
+}  // namespace tensorflow
+
+#endif  // TENSORFLOW_PLATFORM_LOAD_LIBRARY_H_

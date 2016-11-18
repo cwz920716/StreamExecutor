@@ -13,30 +13,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/stream_executor/lib/numbers.h"
+#include "se/stream_executor/core/platform/protobuf.h"
 
-#include <stdlib.h>
+namespace tensorflow {
 
-namespace perftools {
-namespace gputools {
-namespace port {
-
-bool safe_strto32(const char* str, int32* value) {
-  char* endptr;
-  *value = strtol(str, &endptr, 10);  // NOLINT
-  if (endptr != str) {
-    while (isspace(*endptr)) ++endptr;
-  }
-  return *str != '\0' && *endptr == '\0';
+bool ParseProtoUnlimited(protobuf::MessageLite* proto,
+                         const string& serialized) {
+  return ParseProtoUnlimited(proto, serialized.data(), serialized.size());
 }
 
-// Convert strings to floating point values.
-// Leading and trailing spaces are allowed.
-// Values may be rounded on over- and underflow.
-bool safe_strto32(const string& str, int32* value) {
-  return port::safe_strto32(str.c_str(), value);
+bool ParseProtoUnlimited(protobuf::MessageLite* proto, const void* serialized,
+                         size_t size) {
+  protobuf::io::CodedInputStream coded_stream(
+      reinterpret_cast<const uint8*>(serialized), size);
+  coded_stream.SetTotalBytesLimit(INT_MAX, INT_MAX);
+  return proto->ParseFromCodedStream(&coded_stream);
 }
 
-}  // namespace port
-}  // namespace gputools
-}  // namespace perftools
+}  // namespace tensorflow

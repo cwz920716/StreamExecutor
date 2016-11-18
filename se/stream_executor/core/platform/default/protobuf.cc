@@ -1,4 +1,4 @@
-/* Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+/* Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,20 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
-#define TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+#include "se/stream_executor/core/platform/default/protobuf.h"
 
-#include "tensorflow/stream_executor/platform/port.h"
+namespace tensorflow {
 
-namespace perftools {
-namespace gputools {
-namespace port {
+const char* kProtobufInt64Typename = "::google::protobuf::int64";
+const char* kProtobufUint64Typename = "::google::protobuf::uint64";
 
-string Hostname();
-bool GetCurrentDirectory(string* dir);
-
-}  // namespace port
-}  // namespace gputools
-}  // namespace perftools
-
-#endif  // TENSORFLOW_STREAM_EXECUTOR_LIB_PROCESS_STATE_H_
+}  // namespace tensorflow
