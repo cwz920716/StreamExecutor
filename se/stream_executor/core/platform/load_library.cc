@@ -15,7 +15,7 @@ limitations under the License.
 
 #include <dlfcn.h>
 
-#include "se/stream_executor/lib/core/errors.h"
+#include "se/stream_executor/core/lib/core/errors.h"
 
 namespace tensorflow {
 

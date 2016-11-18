@@ -22,8 +22,8 @@ limitations under the License.
 #include <type_traits>
 #include <vector>
 
-#include "tensorflow/stream_executor/platform/logging.h"
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/platform/logging.h"
+#include "se/stream_executor/platform/port.h"
 
 namespace perftools {
 namespace gputools {

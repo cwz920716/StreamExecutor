@@ -16,7 +16,7 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_STRINGPRINTF_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STRINGPRINTF_H_
 
-#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "se/stream_executor/core/lib/strings/stringprintf.h"
 
 namespace perftools {
 namespace gputools {

@@ -7,9 +7,8 @@ cc_library(
             "cuda/*.cc",
             "platform/*.cc",
             "platform/**/*.cc",
-            "core/platform/*.cc",
-            "core/platform/**/*.cc",
-            "lib/**/*.cc",
+            "core/**/*.cc",
+            "core/**/**/*.cc",
         ],
         exclude = [
             "**/*_test.cc",
@@ -18,12 +17,11 @@ cc_library(
     hdrs = glob([
         "*.h",
         "lib/*.h",
-        "cuda/*.h",
         "lib/**/*.h",
+        "cuda/*.h",
         "platform/**/*.h",
-        "core/platform/*.h",
-        "core/platform/**/*.h",
-        "eigen3/**/*",
+        "core/**/*.h",
+        "core/**/**/*.h",
     ]),
     data = [
         "//third_party/gpus/cuda:cublas",

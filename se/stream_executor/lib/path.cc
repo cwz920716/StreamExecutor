@@ -13,8 +13,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/stream_executor/lib/path.h"
-#include "tensorflow/stream_executor/lib/strcat.h"
+#include "se/stream_executor/lib/path.h"
+#include "se/stream_executor/lib/strcat.h"
 
 using ::perftools::gputools::port::StringPiece;
 using ::perftools::gputools::port::StrAppend;

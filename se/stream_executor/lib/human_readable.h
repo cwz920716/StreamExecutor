@@ -19,8 +19,8 @@ limitations under the License.
 #include <assert.h>
 #include <limits>
 
-#include "tensorflow/stream_executor/lib/stringprintf.h"
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/lib/stringprintf.h"
+#include "se/stream_executor/platform/port.h"
 
 namespace perftools {
 namespace gputools {

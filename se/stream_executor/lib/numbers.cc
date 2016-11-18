@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/stream_executor/lib/numbers.h"
+#include "se/stream_executor/lib/numbers.h"
 
 #include <stdlib.h>
 

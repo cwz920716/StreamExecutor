@@ -16,7 +16,7 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_INITIALIZE_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_INITIALIZE_H_
 
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/platform/port.h"
 
 #if defined(PLATFORM_GOOGLE)
 #else

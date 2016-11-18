@@ -18,7 +18,7 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_STRCAT_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STRCAT_H_
 
-#include "tensorflow/core/lib/strings/strcat.h"
+#include "se/stream_executor/core/lib/strings/strcat.h"
 
 namespace perftools {
 namespace gputools {

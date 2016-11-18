@@ -21,9 +21,9 @@ limitations under the License.
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include "se/stream_executor/lib/core/errors.h"
-#include "se/stream_executor/lib/core/status.h"
-#include "se/stream_executor/lib/core/stringpiece.h"
+#include "se/stream_executor/core/lib/core/errors.h"
+#include "se/stream_executor/core/lib/core/status.h"
+#include "se/stream_executor/core/lib/core/stringpiece.h"
 #include "se/stream_executor/platform/file_system.h"
 #include "se/stream_executor/platform/macros.h"
 #include "se/stream_executor/platform/mutex.h"

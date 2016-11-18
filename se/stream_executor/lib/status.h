@@ -18,9 +18,9 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_STATUS_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STATUS_H_
 
-#include "tensorflow/core/lib/core/status.h"
-#include "tensorflow/stream_executor/lib/error.h"  // IWYU pragma: export
-#include "tensorflow/stream_executor/platform/logging.h"
+#include "se/stream_executor/core/lib/core/status.h"
+#include "se/stream_executor/lib/error.h"  // IWYU pragma: export
+#include "se/stream_executor/platform/logging.h"
 
 namespace perftools {
 namespace gputools {

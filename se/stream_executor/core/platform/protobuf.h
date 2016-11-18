@@ -17,7 +17,7 @@ limitations under the License.
 #define TENSORFLOW_PLATFORM_PROTOBUF_H_
 
 #include <google/protobuf/any.pb.h>
-#include "se/stream_executor/lib/core/errors.h"
+#include "se/stream_executor/core/lib/core/errors.h"
 #include "se/stream_executor/core/platform/platform.h"
 #include "se/stream_executor/core/platform/types.h"
 

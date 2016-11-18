@@ -16,8 +16,8 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_STR_UTIL_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STR_UTIL_H_
 
-#include "tensorflow/core/lib/strings/str_util.h"
-#include "tensorflow/stream_executor/lib/stringpiece.h"
+#include "se/stream_executor/core/lib/strings/str_util.h"
+#include "se/stream_executor/lib/stringpiece.h"
 
 namespace perftools {
 namespace gputools {

@@ -16,7 +16,7 @@ limitations under the License.
 #ifndef TENSORFLOW_STREAM_EXECUTOR_LIB_ARRAY_SLICE_H_
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_ARRAY_SLICE_H_
 
-#include "tensorflow/core/lib/gtl/array_slice.h"
+#include "se/stream_executor/core/lib/gtl/array_slice.h"
 
 namespace perftools {
 namespace gputools {

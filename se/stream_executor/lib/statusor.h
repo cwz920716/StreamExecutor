@@ -71,14 +71,14 @@ limitations under the License.
 #define TENSORFLOW_STREAM_EXECUTOR_LIB_STATUSOR_H_
 
 #include <new>
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/platform/port.h"
 #include <type_traits>
 #include <utility>
 
-#include "tensorflow/stream_executor/lib/error.h"
-#include "tensorflow/stream_executor/lib/status.h"
-#include "tensorflow/stream_executor/platform/logging.h"
-#include "tensorflow/stream_executor/platform/port.h"
+#include "se/stream_executor/lib/error.h"
+#include "se/stream_executor/lib/status.h"
+#include "se/stream_executor/platform/logging.h"
+#include "se/stream_executor/platform/port.h"
 
 namespace perftools {
 namespace gputools {

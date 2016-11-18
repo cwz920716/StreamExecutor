@@ -16,7 +16,7 @@ limitations under the License.
 #ifndef TENSORFLOW_PLATFORM_LOAD_LIBRARY_H_
 #define TENSORFLOW_PLATFORM_LOAD_LIBRARY_H_
 
-#include "se/stream_executor/lib/core/status.h"
+#include "se/stream_executor/core/lib/core/status.h"
 
 namespace tensorflow {
 
