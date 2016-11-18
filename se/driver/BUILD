@@ -3,6 +3,7 @@ cc_binary(
     srcs = glob(
         [
             "*.cc",
+            "*.h",
         ],
         exclude = [
             "**/*_test.cc",
@@ -10,5 +11,8 @@ cc_binary(
     ),
     deps = [
         "//se/stream_executor",
+    ],
+    linkopts = [
+        "-lprotobuf",
     ],
 )

@@ -40,6 +40,6 @@ cc_library(
         "//third_party/eigen3",
     ],
     linkopts = [
-        "-ldl",
+        "-ldl", "-lprotobuf", "-lcuda", "-lcudart",
     ],
 )
