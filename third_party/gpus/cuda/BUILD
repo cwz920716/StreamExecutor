@@ -122,6 +122,8 @@ cc_library(
         ":cudart",
         ":cublas",
         ":cudnn",
+        ":cufft",
+        ":curand",
     ],
     visibility = ["//visibility:public"],
 )
