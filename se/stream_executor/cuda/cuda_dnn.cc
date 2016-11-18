@@ -20,7 +20,7 @@ limitations under the License.
 #include <memory>
 
 #include "se/stream_executor/cuda/cuda_activation.h"
-#include "sr/stream_executor/cuda/cuda_diagnostics.h"
+#include "se/stream_executor/cuda/cuda_diagnostics.h"
 #include "se/stream_executor/cuda/cuda_driver.h"
 #include "se/stream_executor/cuda/cuda_gpu_executor.h"
 #include "se/stream_executor/cuda/cuda_platform_id.h"

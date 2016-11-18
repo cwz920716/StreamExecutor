@@ -27,16 +27,16 @@ cc_library(
         "core/**/**/*.h",
     ]),
     data = [
-        "//third_party/gpus/cuda:cublas",
-        "//third_party/gpus/cuda:cudnn",
-        "//third_party/gpus/cuda:cufft",
-        "//third_party/gpus/cuda:curand",
+        "//third_party/gpus:cublas",
+        "//third_party/gpus:cudnn",
+        "//third_party/gpus:cufft",
+        "//third_party/gpus:curand",
     ],
     visibility = [
         "//visibility:public"
     ],
     deps = [
-        "//third_party/gpus/cuda:cuda_headers",
+        "//third_party/gpus:cuda_headers",
         "//third_party/eigen3",
     ],
     linkopts = [
