@@ -1,8 +1,0 @@
-#ifndef TENSORFLOW_STREAM_EXECUTOR_PLATFORM_THREAD_ANNOTATIONS_H_
-#define TENSORFLOW_STREAM_EXECUTOR_PLATFORM_THREAD_ANNOTATIONS_H_
-
-#include "se/stream_executor/platform/port.h"
-
-#include "default/thread_annotations.h"
-
-#endif  // TENSORFLOW_STREAM_EXECUTOR_PLATFORM_THREAD_ANNOTATIONS_H_
