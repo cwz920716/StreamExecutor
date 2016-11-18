@@ -18,7 +18,6 @@ void InitializeCudaPlatform() {
   SE_CHECK_OK(MultiPlatformManager::RegisterPlatform(std::move(platform)));
 }
 
-
 // A PTX string defining a CUDA kernel.
 //
 // This PTX string represents a kernel that takes two arguments: an input value
