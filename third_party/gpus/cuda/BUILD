@@ -28,6 +28,7 @@ config_setting(
 cc_library(
     name = "cuda_headers",
     hdrs = glob([
+        "*.h",
         "**/*.h",
         "**/*.hpp",
     ]),
@@ -82,6 +83,32 @@ cc_library(
     ],
     data = [
         "lib64/libcudnn.so.5",
+    ],
+    includes = ["include/"],
+    visibility = ["//visibility:public"],
+    linkstatic = 1,
+)
+
+cc_library(
+    name = "cufft",
+    srcs = [
+        "lib64/libcufft.so.8.0",
+    ],
+    data = [
+        "lib64/libcufft.so.8.0",
+    ],
+    includes = ["include/"],
+    visibility = ["//visibility:public"],
+    linkstatic = 1,
+)
+
+cc_library(
+    name = "curand",
+    srcs = [
+        "lib64/libcurand.so.8.0",
+    ],
+    data = [
+        "lib64/libcurand.so.8.0",
     ],
     includes = ["include/"],
     visibility = ["//visibility:public"],
