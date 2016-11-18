@@ -7,17 +7,111 @@ popd > /dev/null
 
 function bazel_clean_and_fetch() {
   bazel clean --expunge
-  bazel fetch //se/...
+  bazel fetch //tensorflow/...
 }
+
+## Set up python-related environment settings
+while true; do
+  fromuser=""
+  if [ -z "$PYTHON_BIN_PATH" ]; then
+    default_python_bin_path=$(which python)
+    read -p "Please specify the location of python. [Default is $default_python_bin_path]: " PYTHON_BIN_PATH
+    fromuser="1"
+    if [ -z "$PYTHON_BIN_PATH" ]; then
+      PYTHON_BIN_PATH=$default_python_bin_path
+    fi
+  fi
+  if [ -e "$PYTHON_BIN_PATH" ]; then
+    break
+  fi
+  echo "Invalid python path. ${PYTHON_BIN_PATH} cannot be found" 1>&2
+  if [ -z "$fromuser" ]; then
+    exit 1
+  fi
+  PYTHON_BIN_PATH=""
+  # Retry
+done
+
+while [ "$TF_NEED_GCP" == "" ]; do
+  read -p "Do you wish to build TensorFlow with "\
+"Google Cloud Platform support? [y/N] " INPUT
+  case $INPUT in
+    [Yy]* ) echo "Google Cloud Platform support will be enabled for "\
+"TensorFlow"; TF_NEED_GCP=1;;
+    [Nn]* ) echo "No Google Cloud Platform support will be enabled for "\
+"TensorFlow"; TF_NEED_GCP=0;;
+    "" ) echo "No Google Cloud Platform support will be enabled for "\
+"TensorFlow"; TF_NEED_GCP=0;;
+    * ) echo "Invalid selection: " $INPUT;;
+  esac
+done
+
+if [ "$TF_NEED_GCP" == "1" ]; then
+
+  ## Verify that libcurl header files are available.
+  # Only check Linux, since on MacOS the header files are installed with XCode.
+  if [[ $(uname -a) =~ Linux ]] && [[ ! -f "/usr/include/curl/curl.h" ]]; then
+    echo "ERROR: It appears that the development version of libcurl is not "\
+"available. Please install the libcurl3-dev package."
+    exit 1
+  fi
+
+  # Update Bazel build configuration.
+  perl -pi -e "s,WITH_GCP_SUPPORT = (False|True),WITH_GCP_SUPPORT = True,s" tensorflow/core/platform/default/build_config.bzl
+else
+  # Update Bazel build configuration.
+  perl -pi -e "s,WITH_GCP_SUPPORT = (False|True),WITH_GCP_SUPPORT = False,s" tensorflow/core/platform/default/build_config.bzl
+fi
+
+while [ "$TF_NEED_HDFS" == "" ]; do
+  read -p "Do you wish to build TensorFlow with "\
+"Hadoop File System support? [y/N] " INPUT
+  case $INPUT in
+    [Yy]* ) echo "Hadoop File System support will be enabled for "\
+"TensorFlow"; TF_NEED_HDFS=1;;
+    [Nn]* ) echo "No Hadoop File System support will be enabled for "\
+"TensorFlow"; TF_NEED_HDFS=0;;
+    "" ) echo "No Hadoop File System support will be enabled for "\
+"TensorFlow"; TF_NEED_HDFS=0;;
+    * ) echo "Invalid selection: " $INPUT;;
+  esac
+done
+
+if [ "$TF_NEED_HDFS" == "1" ]; then
+  # Update Bazel build configuration.
+  perl -pi -e "s,WITH_HDFS_SUPPORT = (False|True),WITH_HDFS_SUPPORT = True,s" tensorflow/core/platform/default/build_config.bzl
+else
+  # Update Bazel build configuration.
+  perl -pi -e "s,WITH_HDFS_SUPPORT = (False|True),WITH_HDFS_SUPPORT = False,s" tensorflow/core/platform/default/build_config.bzl
+fi
+
+## Find swig path
+if [ -z "$SWIG_PATH" ]; then
+  SWIG_PATH=`type -p swig 2> /dev/null`
+fi
+if [[ ! -e "$SWIG_PATH" ]]; then
+  echo "Can't find swig.  Ensure swig is in \$PATH or set \$SWIG_PATH."
+  exit 1
+fi
+echo "$SWIG_PATH" > tensorflow/tools/swig/swig_path
+
+# Invoke python_config and set up symlinks to python includes
+(./util/python/python_config.sh --setup "$PYTHON_BIN_PATH";) || exit -1
+
+# Run the gen_git_source to create links where bazel can track dependencies for
+# git hash propagation
+GEN_GIT_SOURCE=tensorflow/tools/git/gen_git_source.py
+chmod a+x ${GEN_GIT_SOURCE}
+${PYTHON_BIN_PATH} ${GEN_GIT_SOURCE} --configure ${SOURCE_BASE_DIR}
 
 ## Set up Cuda-related environment settings
 
 while [ "$TF_NEED_CUDA" == "" ]; do
-  read -p "Do you wish to build StreamExecutor with GPU support? [y/N] " INPUT
+  read -p "Do you wish to build TensorFlow with GPU support? [y/N] " INPUT
   case $INPUT in
-    [Yy]* ) echo "GPU support will be enabled for StreamExecutor"; TF_NEED_CUDA=1;;
-    [Nn]* ) echo "No GPU support will be enabled for StreamExecutor"; TF_NEED_CUDA=0;;
-    "" ) echo "No GPU support will be enabled for StreamExecutor"; TF_NEED_CUDA=0;;
+    [Yy]* ) echo "GPU support will be enabled for TensorFlow"; TF_NEED_CUDA=1;;
+    [Nn]* ) echo "No GPU support will be enabled for TensorFlow"; TF_NEED_CUDA=0;;
+    "" ) echo "No GPU support will be enabled for TensorFlow"; TF_NEED_CUDA=0;;
     * ) echo "Invalid selection: " $INPUT;;
   esac
 done
@@ -174,7 +268,7 @@ while true; do
   CUDNN_INSTALL_PATH=""
 done
 
-# Configure the compute capabilities that StreamExecutor builds for.
+# Configure the compute capabilities that TensorFlow builds for.
 # Since Cuda toolkit is not backward-compatible, this is not guaranteed to work.
 while true; do
   fromuser=""
