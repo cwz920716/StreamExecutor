@@ -10,14 +10,6 @@ using namespace perftools::gputools::cuda;
 using perftools::gputools::port::Demangle;
 using namespace perftools::gputools::blas;
 
-void InitializeCudaPlatform() {
-  // Disabling leak checking, MultiPlatformManager does not destroy its
-  // registered platforms.
-  
-  std::unique_ptr<cuda::CudaPlatform> platform(new cuda::CudaPlatform);
-  SE_CHECK_OK(MultiPlatformManager::RegisterPlatform(std::move(platform)));
-}
-
 // A PTX string defining a CUDA kernel.
 //
 // This PTX string represents a kernel that takes two arguments: an input value
@@ -59,6 +51,8 @@ static constexpr float MYSTERY_VALUE = 153.0f;
 int main() {
   std::cout << "Hello World from Stream Executor!" << std::endl;
 
+  // Get a CUDA Platform object. (Other platforms such as OpenCL are also
+  // supported.)
   auto platform =
       MultiPlatformManager::PlatformWithName("cuda").ValueOrDie();
 

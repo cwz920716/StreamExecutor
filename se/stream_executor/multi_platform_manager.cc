@@ -19,8 +19,6 @@ limitations under the License.
 #include "se/stream_executor/lib/str_util.h"
 #include "se/stream_executor/lib/stringprintf.h"
 
-#include <iostream>
-
 namespace perftools {
 namespace gputools {
 
@@ -28,7 +26,6 @@ namespace gputools {
 
 /* static */ port::Status MultiPlatformManager::RegisterPlatform(
     std::unique_ptr<Platform> platform) {
-  std::cout << "Rigistering new platform...\n";
   CHECK(platform != nullptr);
   string key = port::Lowercase(platform->Name());
   mutex_lock lock(platforms_mutex_);

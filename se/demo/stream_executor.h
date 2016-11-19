@@ -33,6 +33,15 @@ limitations under the License.
 
 #include "se/stream_executor/cuda/cuda_platform.h"
 
+void InitializeCudaPlatform() {
+  // Disabling leak checking, MultiPlatformManager does not destroy its
+  // registered platforms.
+  
+  std::unique_ptr<perftools::gputools::cuda::CudaPlatform> platform(new perftools::gputools::cuda::CudaPlatform);
+  SE_CHECK_OK(perftools::gputools::MultiPlatformManager::RegisterPlatform(std::move(platform)));
+}
+
+
 namespace tensorflow {
 
 namespace gpu = ::perftools::gputools;
