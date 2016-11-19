@@ -1,6 +1,6 @@
 #include "se/stream_executor/lib/demangle.h"
 #include "se/stream_executor/blas.h"
-#include "se/driver/stream_executor.h"
+#include "se/demo/stream_executor.h"
 #include <iostream>
 
 using namespace std;
@@ -57,9 +57,7 @@ static constexpr float MYSTERY_VALUE = 153.0f;
 
 
 int main() {
-  std::cout << Demangle("St13bad_exception") << std::endl;
-  std::cout << TransposeString(Transpose::kTranspose) << std::endl;
-  std::cout << "Hello World!" << std::endl;
+  std::cout << "Hello World from Stream Executor!" << std::endl;
 
   auto platform =
       MultiPlatformManager::PlatformWithName("cuda").ValueOrDie();

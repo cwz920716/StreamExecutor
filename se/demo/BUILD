@@ -1,5 +1,5 @@
 cc_binary(
-    name = "driver",
+    name = "demo",
     srcs = glob(
         [
             "*.cc",
